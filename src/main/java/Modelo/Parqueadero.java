@@ -3,18 +3,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo;
+
 import java.util.ArrayList;
+
 /**
  *
  * @author Usuario
  */
 
 public class Parqueadero {
+
     private ArrayList<Vehiculo> vehiculosDentro = new ArrayList<>();
     private int capacidad;
 
     public Parqueadero(int capacidad) {
         this.capacidad = capacidad;
+    }
+
+    public ArrayList<Vehiculo> getVehiculosDentro() {
+        return vehiculosDentro;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public boolean eliminarManual(String placa) {
+        for (Vehiculo v : vehiculosDentro) {
+            if (v.getPlaca().equals(placa)) {
+                vehiculosDentro.remove(v);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean ingresarVehiculo(Vehiculo v) {

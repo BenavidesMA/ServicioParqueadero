@@ -72,4 +72,6 @@ public abstract class Vehiculo implements Registrable{
     }
 
     public abstract double calcularTarifa();
+    
+    public abstract String tipoVehiculo();
 }

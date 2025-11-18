@@ -17,4 +17,9 @@ public class Camion extends Vehiculo {
     public double calcularTarifa(){
         return 5000;
     }
+    
+    @Override
+    public String tipoVehiculo(){
+        return "Camion";
+    }
 }

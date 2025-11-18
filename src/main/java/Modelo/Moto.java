@@ -17,4 +17,9 @@ public class Moto extends Vehiculo {
     public double calcularTarifa(){
         return 1500;
     }
+    
+    @Override
+    public String tipoVehiculo(){
+        return "Moto";
+    }
 }

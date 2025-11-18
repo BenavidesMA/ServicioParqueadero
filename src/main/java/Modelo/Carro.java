@@ -17,5 +17,10 @@ public class Carro extends Vehiculo {
     public double calcularTarifa(){
         return 3000; 
     }
+    
+    @Override
+    public String tipoVehiculo(){
+        return "Carro";
+    }
 
 }
