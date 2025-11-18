@@ -29,6 +29,7 @@ public class ServicioParqueadero {
             System.out.print("Seleccione una opcion: ");
             String opcion = sc.nextLine();
 
+            
             if (opcion.equals("1")) {
                 
                 System.out.println("\n--- Registrar vehiculo ---");
