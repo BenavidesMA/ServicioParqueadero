@@ -107,13 +107,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("Servicio Parqueadero");
         setBackground(new java.awt.Color(153, 153, 153));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 18)); // NOI18N
         jLabel1.setText("MENÚ PRINCIPAL");
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         agregarVehiculo.setText("Agregar vehiculo");
         agregarVehiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +202,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void agregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarVehiculoActionPerformed
         // TODO add your handling code here:
-        
+        new VentanaAgregarVehiculo().setVisible(true);
+        this.dispose();
+
         
     }//GEN-LAST:event_agregarVehiculoActionPerformed
 
