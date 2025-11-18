@@ -10,4 +10,6 @@ package Modelo;
  */
 public class Factura {
     
+    int horas;
+    
 }
