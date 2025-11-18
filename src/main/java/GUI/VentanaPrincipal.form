@@ -176,6 +176,7 @@
                   <Component id="listarVehiculos" alignment="1" max="32767" attributes="0"/>
                   <Component id="eliminarVehiculo" alignment="1" max="32767" attributes="0"/>
                   <Component id="salir" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnRetirarVehiculo" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -185,6 +186,8 @@
                       <Component id="agregarVehiculo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="listarVehiculos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnRetirarVehiculo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="eliminarVehiculo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -225,6 +228,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRetirarVehiculo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Retirar vehiculo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRetirarVehiculoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

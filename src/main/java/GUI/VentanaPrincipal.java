@@ -43,6 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         listarVehiculos = new javax.swing.JButton();
         eliminarVehiculo = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        btnRetirarVehiculo = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,6 +143,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnRetirarVehiculo.setText("Retirar vehiculo");
+        btnRetirarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetirarVehiculoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -150,6 +158,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addComponent(listarVehiculos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(eliminarVehiculo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(salir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRetirarVehiculo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,6 +167,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(agregarVehiculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(listarVehiculos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRetirarVehiculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(eliminarVehiculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -235,6 +246,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
+    private void btnRetirarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarVehiculoActionPerformed
+        // TODO add your handling code here:
+        ArrayList<Vehiculo> lista = parqueadero.getVehiculosDentro();
+        int plazasDisponibles = parqueadero.getCapacidad() - lista.size();
+        if(lista.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay vehiculos registrados. Plazas disponibles: "+ plazasDisponibles ,
+                        "Alerta", javax.swing.JOptionPane.WARNING_MESSAGE);
+    
+    }else{
+        VentanaRetirarVehiculo ventana = new VentanaRetirarVehiculo(parqueadero);
+        ventana.setVisible(true);
+        this.dispose();
+        }
+    }//GEN-LAST:event_btnRetirarVehiculoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +288,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarVehiculo;
+    private javax.swing.JButton btnRetirarVehiculo;
     private javax.swing.JButton eliminarVehiculo;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JInternalFrame jInternalFrame1;
