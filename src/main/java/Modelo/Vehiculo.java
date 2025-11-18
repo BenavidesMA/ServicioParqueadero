@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  *
  * @author Usuario
  */
-public abstract class Vehiculo {
+public abstract class Vehiculo implements Registrable{
     protected String placa;
     protected String modelo;
     protected Propietario propietario;

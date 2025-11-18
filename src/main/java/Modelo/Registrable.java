@@ -9,5 +9,6 @@ package Modelo;
  * @author Usuario
  */
 public interface Registrable {
-    
+    void registrarEntrada();
+    void registrarSalida();
 }
