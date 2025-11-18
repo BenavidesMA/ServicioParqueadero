@@ -11,6 +11,6 @@ package Vista;
 public class ServicioParqueadero {
 
     public static void main(String[] args) {
-        System.out.println("Hola como estan todos");
+        System.out.println("a");
     }
 }
