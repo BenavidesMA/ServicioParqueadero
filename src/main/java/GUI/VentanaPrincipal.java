@@ -7,10 +7,11 @@ import Vista.ServicioParqueadero;
 import Modelo.*;
 /**
  *
- * @author Miguel
+ * @author Usuario
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
     
+    private Parqueadero parqueadero;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
 
     /**
@@ -18,6 +19,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+         parqueadero = new Parqueadero(20);
     }
 
     /**
@@ -202,7 +204,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void agregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarVehiculoActionPerformed
         // TODO add your handling code here:
-        new VentanaAgregarVehiculo().setVisible(true);
+        VentanaAgregarVehiculo ventana = new VentanaAgregarVehiculo(parqueadero);
+        ventana.setVisible(true);
         this.dispose();
 
         
