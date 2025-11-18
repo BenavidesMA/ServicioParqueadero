@@ -17,12 +17,10 @@ public abstract class Vehiculo {
     protected LocalDateTime horaEntrada;
     protected LocalDateTime horaSalida;
 
-    public Vehiculo(String placa, String modelo, Propietario propietario, LocalDateTime horaEntrada, LocalDateTime horaSalida) {
+    public Vehiculo(String placa, String modelo, Propietario propietario) {
         this.placa = placa;
         this.modelo = modelo;
         this.propietario = propietario;
-        this.horaEntrada = horaEntrada;
-        this.horaSalida = horaSalida;
     }
 
     public String getPlaca() {

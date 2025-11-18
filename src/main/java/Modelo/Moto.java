@@ -9,5 +9,12 @@ package Modelo;
  * @author Usuario
  */
 public class Moto extends Vehiculo {
+    public Moto(String placa,String modelo, Propietario propietario) {
+        super(placa, modelo, propietario);
+    }
     
+    @Override
+    public double calcularTarifa(){
+        return 1500;
+    }
 }
