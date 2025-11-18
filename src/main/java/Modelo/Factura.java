@@ -12,10 +12,12 @@ import java.time.Duration;
 public class Factura {
     private Vehiculo vehiculo;
     private double total;
+    private int horasSimuladas;
 
     public Factura(Vehiculo vehiculo, int horasSimuladas) {
         this.vehiculo = vehiculo;
-        calcularTotal(horasSimuladas);
+        this.horasSimuladas = horasSimuladas;
+        this.total = vehiculo.calcularTarifa() * horasSimuladas;
     }
 
    private void calcularTotal(int horasSimuladas) {
@@ -26,4 +28,11 @@ public class Factura {
     public double getTotal() {
         return total;
     }
+    
+    public Vehiculo getVehiculo() {
+    return vehiculo;
+    }
+    public int getHorasSimuladas() {
+    return horasSimuladas;
+}
 }

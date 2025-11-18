@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+
 import Modelo.*;
 
 /**
@@ -164,6 +165,74 @@ public class VentanaRetirarVehiculo extends javax.swing.JFrame {
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
         // TODO add your handling code here:
+        try {
+
+            String placa = txtPlacaR.getText().trim();
+            if (placa.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Debe ingresar la placa.",
+                        "Error",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Vehiculo vehiculo = null;
+            for (Vehiculo v : parqueadero.getVehiculosDentro()) {
+                if (v.getPlaca().equalsIgnoreCase(placa)) {
+                    vehiculo = v;
+                    break;
+                }
+            }
+
+            if (vehiculo == null) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "No existe un vehículo con esa placa dentro del parqueadero.",
+                        "Error",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String permanenciaStr = txtPermanencia.getText().trim();
+            if (!permanenciaStr.matches("\\d+")) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "La permanencia debe ser un número entero.",
+                        "Error",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            int tiempo = Integer.parseInt(permanenciaStr);
+            int horasSimuladas = tiempo;
+
+            if (rbMinutos.isSelected()) {
+                horasSimuladas = (int) Math.ceil(tiempo / 60.0);
+            } else if (!rbHoras.isSelected()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Debe seleccionar minutos u horas.",
+                        "Error",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Factura factura = new Factura(vehiculo, horasSimuladas);
+
+            parqueadero.getVehiculosDentro().remove(vehiculo);
+
+            VentanaFactura ventanaFactura = new VentanaFactura(factura);
+            ventanaFactura.setVisible(true);
+
+            txtPlacaR.setText("");
+            txtPermanencia.setText("");
+            rbHoras.setSelected(false);
+            rbMinutos.setSelected(false);
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void rbMinutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMinutosActionPerformed

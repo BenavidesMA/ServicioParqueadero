@@ -214,7 +214,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String nombre = txtNombre.getText().trim();
-            String placa = txtPlaca.getText().trim();
+            String placa = txtPlaca.getText().trim().toUpperCase();;
             String modelo = txtModelo.getText().trim();
 
             if (nombre.isEmpty() || txtCedula.getText().isEmpty()
