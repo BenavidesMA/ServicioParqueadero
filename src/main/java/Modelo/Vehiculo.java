@@ -63,10 +63,12 @@ public abstract class Vehiculo implements Registrable{
         this.horaSalida = horaSalida;
     }
     
+    @Override
     public void registrarEntrada() {
         this.horaEntrada = LocalDateTime.now();
     }
 
+    @Override
     public void registrarSalida() {
         this.horaSalida = LocalDateTime.now();
     }

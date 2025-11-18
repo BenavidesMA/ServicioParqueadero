@@ -12,7 +12,7 @@ import Modelo.*;
  */
 public class VentanaAgregarVehiculo extends javax.swing.JFrame {
 
-    private Parqueadero parqueadero;
+    private Parqueadero parqueadero = VentanaPrincipal.parqueadero;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaAgregarVehiculo.class.getName());
 
     /**
@@ -251,7 +251,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
                                 "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
                         return;
                     }
-                } else if (tipo.equals("camion")) {
+                } else if (tipo.equals("camión")) {
                     if (placa.matches("^[a-zA-Z]{3}\\d{3}$")) {
                         v = new Camion(placa, modelo, propietario);
                     } else {
@@ -263,7 +263,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
 
                 boolean ok = parqueadero.ingresarVehiculo(v);
 
-                if (ok) {
+                if (ok) {   
                     javax.swing.JOptionPane.showMessageDialog(this, "Vehículo agregado correctamente");
                     txtNombre.setText("");
                     txtCedula.setText("");
