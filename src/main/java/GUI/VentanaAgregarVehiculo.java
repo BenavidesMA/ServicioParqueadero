@@ -141,7 +141,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
                     .addComponent(cmbVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,47 +212,79 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
 
     private void btnGuardarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVehiculoActionPerformed
         // TODO add your handling code here:
-        String nombre = txtNombre.getText().trim();
-        String placa = txtPlaca.getText().trim();
-        String modelo = txtModelo.getText().trim();
+        try {
+            String nombre = txtNombre.getText().trim();
+            String placa = txtPlaca.getText().trim();
+            String modelo = txtModelo.getText().trim();
 
-        if (nombre.isEmpty() || txtCedula.getText().isEmpty()
-                || txtTelefono.getText().isEmpty() || placa.isEmpty() || modelo.isEmpty()) {
+            if (nombre.isEmpty() || txtCedula.getText().isEmpty()
+                    || txtTelefono.getText().isEmpty() || placa.isEmpty() || modelo.isEmpty()) {
 
-            javax.swing.JOptionPane.showMessageDialog(this, "Debe llenar todos los campos",
-                    "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+                javax.swing.JOptionPane.showMessageDialog(this, "Debe llenar todos los campos",
+                        "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (nombre.matches("^[A-Za-z]+$")) {
 
-        int cedula = Integer.parseInt(txtCedula.getText().trim());
-        int telefono = Integer.parseInt(txtTelefono.getText().trim());
+                int cedula = Integer.parseInt(txtCedula.getText().trim());
+                int telefono = Integer.parseInt(txtTelefono.getText().trim());
 
-        Propietario propietario = new Propietario(nombre, cedula, telefono);
+                Propietario propietario = new Propietario(nombre, cedula, telefono);
 
-        String tipo = cmbVehiculo.getSelectedItem().toString().toLowerCase();
+                String tipo = cmbVehiculo.getSelectedItem().toString().toLowerCase();
 
-        Vehiculo v = null;
+                Vehiculo v = null;
 
-        if (tipo.equals("moto")) {
-            v = new Moto(placa, modelo, propietario);
-        } else if (tipo.equals("carro")) {
-            v = new Carro(placa, modelo, propietario);
-        } else {
-            v = new Camion(placa, modelo, propietario);
-        }
+                if (tipo.equals("moto")) {
+                    if (placa.matches("^[A-Za-z]{3}\\d{2}[A-Za-z]$")) {
+                        v = new Moto(placa, modelo, propietario);
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Ingrese una placa válida (Ej: ABC12D)",
+                                "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                } else if (tipo.equals("carro")) {
+                    if (placa.matches("^[a-zA-Z]{3}\\d{3}$")) {
+                        v = new Carro(placa, modelo, propietario);
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Ingrese una placa válida (Ej: ABC123)",
+                                "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                } else if (tipo.equals("camion")) {
+                    if (placa.matches("^[a-zA-Z]{3}\\d{3}$")) {
+                        v = new Camion(placa, modelo, propietario);
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, "Ingrese una placa válida (Ej: ABC123)",
+                                "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                }
 
-        boolean ok = parqueadero.ingresarVehiculo(v);
+                boolean ok = parqueadero.ingresarVehiculo(v);
 
-        if (ok) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Vehículo agregado correctamente");
-            txtNombre.setText("");
-            txtCedula.setText("");
-            txtTelefono.setText("");
-            txtPlaca.setText("");
-            txtModelo.setText("");
+                if (ok) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Vehículo agregado correctamente");
+                    txtNombre.setText("");
+                    txtCedula.setText("");
+                    txtTelefono.setText("");
+                    txtPlaca.setText("");
+                    txtModelo.setText("");
 
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "El parqueadero está lleno");
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, "El parqueadero está lleno");
+                }
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un nombre válido, el nombre no puede contener números (Ej: Edwin)",
+                        "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+            }
+        } catch (NumberFormatException e) {
+
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error: Cédula y Telefono deben ser números enteros válidos y no pueden estar vacíos.",
+                    "Error de Datos Numéricos",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarVehiculoActionPerformed
 
