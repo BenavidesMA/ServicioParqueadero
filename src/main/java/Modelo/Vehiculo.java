@@ -10,5 +10,6 @@ package Modelo;
  */
 public abstract class Vehiculo {
     String placa;
-    
+    String color;
+    int llanta;
 }
