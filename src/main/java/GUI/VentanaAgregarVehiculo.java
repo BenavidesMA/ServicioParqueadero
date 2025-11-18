@@ -224,11 +224,18 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
                         "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if (nombre.matches("^[A-Za-z]+$")) {
+            if (nombre.matches("^[A-Za-z ]+$")) {
 
                 int cedula = Integer.parseInt(txtCedula.getText().trim());
                 int telefono = Integer.parseInt(txtTelefono.getText().trim());
 
+                if (parqueadero.placaExiste(placa)) {
+                     javax.swing.JOptionPane.showMessageDialog(this,
+                            "Este vehiculo ya se encuentra registrado",
+                            "Placa Duplicada",
+                             javax.swing.JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
                 Propietario propietario = new Propietario(nombre, cedula, telefono);
 
                 String tipo = cmbVehiculo.getSelectedItem().toString().toLowerCase();
@@ -263,7 +270,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
 
                 boolean ok = parqueadero.ingresarVehiculo(v);
 
-                if (ok) {   
+                if (ok) {
                     javax.swing.JOptionPane.showMessageDialog(this, "Vehículo agregado correctamente");
                     txtNombre.setText("");
                     txtCedula.setText("");

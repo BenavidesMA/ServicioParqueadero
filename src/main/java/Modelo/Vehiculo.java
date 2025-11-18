@@ -5,6 +5,7 @@
 package Modelo;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  *
@@ -14,7 +15,7 @@ public abstract class Vehiculo implements Registrable{
     protected String placa;
     protected String modelo;
     protected Propietario propietario;
-    protected LocalDateTime horaEntrada;
+    protected LocalTime horaEntrada;
     protected LocalDateTime horaSalida;
 
     public Vehiculo(String placa, String modelo, Propietario propietario) {
@@ -35,7 +36,7 @@ public abstract class Vehiculo implements Registrable{
         return propietario;
     }
 
-    public LocalDateTime getHoraEntrada() {
+    public LocalTime getHoraEntrada() {
         return horaEntrada;
     }
 
@@ -55,7 +56,7 @@ public abstract class Vehiculo implements Registrable{
         this.propietario = propietario;
     }
 
-    public void setHoraEntrada(LocalDateTime horaEntrada) {
+    public void setHoraEntrada(LocalTime horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 
@@ -65,7 +66,7 @@ public abstract class Vehiculo implements Registrable{
     
     @Override
     public void registrarEntrada() {
-        this.horaEntrada = LocalDateTime.now();
+        this.horaEntrada = LocalTime.now();
     }
 
     @Override

@@ -7,7 +7,7 @@ import Modelo.*;
 import java.time.format.DateTimeFormatter;
 /**
  *
- * @author Miguel
+ * @author Usuario
  */
 public class VentanaFactura extends javax.swing.JFrame {
     

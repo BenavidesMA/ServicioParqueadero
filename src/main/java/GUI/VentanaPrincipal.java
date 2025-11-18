@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
     
+    private GestorArchivos gestor;
     public static Parqueadero parqueadero = new Parqueadero(20);
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
 
@@ -20,6 +21,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        gestor = new GestorArchivos();
+        parqueadero.setVehiculosDentro(gestor.cargarVehiculos());
     }
 
     /**

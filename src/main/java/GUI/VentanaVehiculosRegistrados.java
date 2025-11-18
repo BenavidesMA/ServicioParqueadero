@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Miguel
+ * @author Usuario
  */
 public class VentanaVehiculosRegistrados extends javax.swing.JFrame {
 

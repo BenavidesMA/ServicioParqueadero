@@ -8,7 +8,7 @@ import Modelo.*;
 
 /**
  *
- * @author Miguel
+ * @author Usuario
  */
 public class VentanaRetirarVehiculo extends javax.swing.JFrame {
 
@@ -216,7 +216,16 @@ public class VentanaRetirarVehiculo extends javax.swing.JFrame {
 
             Factura factura = new Factura(vehiculo, horasSimuladas);
 
-            parqueadero.getVehiculosDentro().remove(vehiculo);
+            double tarifa = parqueadero.retirarVehiculo(vehiculo.getPlaca());
+
+            if (tarifa >= 0) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Vehículo retirado");
+                
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "No se encontró el vehículo con esa placa.");
+            }
 
             VentanaFactura ventanaFactura = new VentanaFactura(factura);
             ventanaFactura.setVisible(true);
