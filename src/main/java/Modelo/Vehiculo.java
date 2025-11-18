@@ -12,4 +12,5 @@ public abstract class Vehiculo {
     String placa;
     String color;
     int llanta;
+    int codigo;
 }
