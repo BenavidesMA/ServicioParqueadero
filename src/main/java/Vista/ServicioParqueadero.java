@@ -11,6 +11,6 @@ package Vista;
 public class ServicioParqueadero {
 
     public static void main(String[] args) {
-        System.out.println("Hice un cambio");
+        System.out.println("Pruebas");
     }
 }
