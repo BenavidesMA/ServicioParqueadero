@@ -9,5 +9,7 @@ package Modelo;
  * @author Usuario
  */
 public class Parqueadero {
+    int cupos;
+    
     
 }
