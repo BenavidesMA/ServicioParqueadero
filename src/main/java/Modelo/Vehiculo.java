@@ -9,5 +9,6 @@ package Modelo;
  * @author Usuario
  */
 public abstract class Vehiculo {
+    String placa;
     
 }
