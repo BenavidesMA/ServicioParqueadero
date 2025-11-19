@@ -67,10 +67,18 @@ public class GestorArchivos {
                 Vehiculo v;
 
                 switch (tipo) {
-                    case "moto" -> v = new Moto(placa, modelo, p);
-                    case "carro" -> v = new Carro(placa, modelo, p);
-                    default -> v = new Camion(placa, modelo, p);
-                }
+                case "Moto":
+                    v = new Moto(placa, modelo, p);
+                    break;
+                case "Carro":
+                    v = new Carro(placa, modelo, p);
+                    break;
+                case "Camion":
+                    v = new Camion(placa, modelo, p);
+                    break;
+                default:
+                    continue; 
+            }
 
                 v.setHoraEntrada(hora);
 

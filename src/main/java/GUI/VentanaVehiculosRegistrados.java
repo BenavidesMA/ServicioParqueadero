@@ -47,9 +47,9 @@ public class VentanaVehiculosRegistrados extends javax.swing.JFrame {
         String hora = (v.getHoraEntrada() != null)
                 ? v.getHoraEntrada().format(formato)
                 : "----";
-
+        
         model.addRow(new Object[]{
-            v.getClass().getSimpleName(),   // Tipo de vehículo
+            v.tipoVehiculo(),   // Tipo de vehículo
             v.getPlaca(),
             v.getPropietario().getNombre(),
             v.getPropietario().getTelefono(),

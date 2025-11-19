@@ -30,7 +30,7 @@ public class ServicioParqueadero {
         System.setProperty("awt.useSystemAAFontSettings", "on");
         System.setProperty("swing.aatext", "true");
         EventQueue.invokeLater(() -> {
-            Parqueadero parqueadero = new Parqueadero(20);
+
             VentanaPrincipal principal = new VentanaPrincipal();
 
             principal.pack();
