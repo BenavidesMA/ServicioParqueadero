@@ -40,6 +40,7 @@ public class VentanaRetirarVehiculo extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         jButton2 = new javax.swing.JButton();
         buttonGroup3 = new javax.swing.ButtonGroup();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtPlacaR = new javax.swing.JTextField();
@@ -51,6 +52,8 @@ public class VentanaRetirarVehiculo extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
+
+        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Retirar Vehiculo");
@@ -298,6 +301,7 @@ public class VentanaRetirarVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JRadioButton rbHoras;
     private javax.swing.JRadioButton rbMinutos;
     private javax.swing.JTextField txtPermanencia;
