@@ -171,7 +171,7 @@ public class VentanaEliminarVehiculo extends javax.swing.JFrame {
             if (opcion == javax.swing.JOptionPane.YES_OPTION) {
                 javax.swing.JOptionPane.showMessageDialog(this,
                         "El vehículo con placa "+placa+" ha sido eliminado");
-                parqueadero.retirarVehiculo(vehiculo.getPlaca());
+                parqueadero.eliminarManual(vehiculo.getPlaca());
                 txtPlaca.setText("");
                 
             } else {

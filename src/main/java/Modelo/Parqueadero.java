@@ -36,6 +36,7 @@ public class Parqueadero {
         for (Vehiculo v : vehiculosDentro) {
             if (v.getPlaca().equals(placa)) {
                 vehiculosDentro.remove(v);
+                gestor.guardarVehiculos(vehiculosDentro);
                 return true;
             }
         }
