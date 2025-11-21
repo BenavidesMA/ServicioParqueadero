@@ -21,7 +21,7 @@ public class ParqueaderoTest {
     @Test
     public void testIngresarVehiculo() {
         Parqueadero p = new Parqueadero(5);
-        Propietario prop = new Propietario("Ana", 123, 555);
+        Propietario prop = new Propietario("Ana", 12312323, 555);
         Vehiculo v = new Carro("ABC123", "Mazda", prop);
 
         boolean resultado = p.ingresarVehiculo(v);
