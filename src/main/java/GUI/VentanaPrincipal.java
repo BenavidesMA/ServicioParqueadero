@@ -242,6 +242,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void eliminarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVehiculoActionPerformed
         // TODO add your handling code here:
+        
+        ArrayList<Vehiculo> lista = parqueadero.getVehiculosDentro();
+        int plazasDisponibles = parqueadero.getCapacidad() - lista.size();
+        if(lista.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay vehiculos registrados. Plazas disponibles: "+ plazasDisponibles ,
+                        "Alerta", javax.swing.JOptionPane.WARNING_MESSAGE);
+    
+    }else{
+        VentanaEliminarVehiculo ventana = new VentanaEliminarVehiculo(parqueadero);
+        ventana.setVisible(true);
+        this.dispose();
+        }
+        
     }//GEN-LAST:event_eliminarVehiculoActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed

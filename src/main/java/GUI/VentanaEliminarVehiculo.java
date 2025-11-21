@@ -4,19 +4,27 @@
  */
 package GUI;
 
+import Modelo.*;
+
 /**
  *
  * @author Usuario
  */
 public class VentanaEliminarVehiculo extends javax.swing.JFrame {
-    
+
+    private Parqueadero parqueadero = VentanaPrincipal.parqueadero;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaEliminarVehiculo.class.getName());
 
     /**
      * Creates new form VentanaEliminarVehiculo
      */
-    public VentanaEliminarVehiculo() {
+    public VentanaEliminarVehiculo(Parqueadero parqueadero) {
         initComponents();
+        this.parqueadero = parqueadero;
+    }
+
+    private VentanaEliminarVehiculo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -64,6 +72,11 @@ public class VentanaEliminarVehiculo extends javax.swing.JFrame {
         });
 
         btnVolverMenu.setText("Volver al Menú");
+        btnVolverMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverMenuActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar Vehículo");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,10 +134,64 @@ public class VentanaEliminarVehiculo extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        
-       
-        
+        try {
+
+            String placa = txtPlaca.getText().trim().toUpperCase();
+            if (placa.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Debe ingresar la placa.",
+                        "Error",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Vehiculo vehiculo = null;
+            for (Vehiculo v : parqueadero.getVehiculosDentro()) {
+                if (v.getPlaca().equalsIgnoreCase(placa)) {
+                    vehiculo = v;
+                    break;
+                }
+            }
+
+            if (vehiculo == null) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "No existe un vehículo con esa placa dentro del parqueadero.",
+                        "Error",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            int opcion = javax.swing.JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Seguro que desea eliminar el vehiculo con placa " + placa + "?",
+                    "Confirmación",
+                    javax.swing.JOptionPane.YES_NO_OPTION
+            );
+
+            if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "El vehículo con placa "+placa+" ha sido eliminado");
+                parqueadero.retirarVehiculo(vehiculo.getPlaca());
+                
+            } else {
+                
+            }
+            } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+            
+
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
+        // TODO add your handling code here:
+        VentanaPrincipal ventana = new VentanaPrincipal();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverMenuActionPerformed
 
     /**
      * @param args the command line arguments
