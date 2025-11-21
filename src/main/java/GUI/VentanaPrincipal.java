@@ -219,6 +219,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void agregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarVehiculoActionPerformed
         // TODO add your handling code here:
         VentanaAgregarVehiculo ventana = new VentanaAgregarVehiculo(parqueadero);
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
 
@@ -235,6 +236,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     }else{
         VentanaVehiculosRegistrados ventana = new VentanaVehiculosRegistrados(parqueadero);
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
         }
@@ -251,6 +253,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     }else{
         VentanaEliminarVehiculo ventana = new VentanaEliminarVehiculo(parqueadero);
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
         }
@@ -272,6 +275,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     }else{
         VentanaRetirarVehiculo ventana = new VentanaRetirarVehiculo(parqueadero);
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
         }

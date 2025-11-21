@@ -33,7 +33,7 @@ public class ServicioParqueadero {
 
             VentanaPrincipal principal = new VentanaPrincipal();
 
-            principal.pack();
+            principal.setLocationRelativeTo(null);
             principal.setVisible(true);
         });
 

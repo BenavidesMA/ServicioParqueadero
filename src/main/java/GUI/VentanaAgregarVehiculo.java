@@ -315,6 +315,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         VentanaPrincipal ventana = new VentanaPrincipal();
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 

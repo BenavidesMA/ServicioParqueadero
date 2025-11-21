@@ -172,6 +172,7 @@ public class VentanaEliminarVehiculo extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(this,
                         "El vehículo con placa "+placa+" ha sido eliminado");
                 parqueadero.retirarVehiculo(vehiculo.getPlaca());
+                txtPlaca.setText("");
                 
             } else {
                 
@@ -189,6 +190,7 @@ public class VentanaEliminarVehiculo extends javax.swing.JFrame {
     private void btnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuActionPerformed
         // TODO add your handling code here:
         VentanaPrincipal ventana = new VentanaPrincipal();
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVolverMenuActionPerformed
