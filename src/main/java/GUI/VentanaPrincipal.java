@@ -3,16 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+
 import Vista.ServicioParqueadero;
 import Modelo.*;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Usuario
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
-    private GestorArchivos gestor;
+
+    public static DefaultComboBoxModel<String> modeloPlacas = new DefaultComboBoxModel<>();
+    public static GestorArchivos gestor;
     public static Parqueadero parqueadero = new Parqueadero(20);
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
 
@@ -22,7 +26,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         gestor = new GestorArchivos();
-        parqueadero.setVehiculosDentro(gestor.cargarVehiculos());
+
+        ArrayList<Vehiculo> lista = gestor.cargarVehiculos();
+        parqueadero.setVehiculosDentro(lista);
+
+        modeloPlacas.removeAllElements(); // <-- Limpia antes de llenar
+
+        for (Vehiculo v : lista) {
+            modeloPlacas.addElement(v.getPlaca());
+        }
     }
 
     /**
@@ -218,46 +230,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void agregarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarVehiculoActionPerformed
         // TODO add your handling code here:
-        VentanaAgregarVehiculo ventana = new VentanaAgregarVehiculo(parqueadero);
+        VentanaAgregarVehiculo ventana = new VentanaAgregarVehiculo(modeloPlacas, parqueadero);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         this.dispose();
 
-        
+
     }//GEN-LAST:event_agregarVehiculoActionPerformed
 
     private void listarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarVehiculosActionPerformed
         // TODO add your handling code here:
         ArrayList<Vehiculo> lista = parqueadero.getVehiculosDentro();
         int plazasDisponibles = parqueadero.getCapacidad() - lista.size();
-        if(lista.isEmpty()){
-            javax.swing.JOptionPane.showMessageDialog(this, "No hay vehiculos registrados. Plazas disponibles: "+ plazasDisponibles ,
-                        "Alerta", javax.swing.JOptionPane.WARNING_MESSAGE);
-    
-    }else{
-        VentanaVehiculosRegistrados ventana = new VentanaVehiculosRegistrados(parqueadero);
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
-        this.dispose();
+        if (lista.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay vehiculos registrados. Plazas disponibles: " + plazasDisponibles,
+                    "Alerta", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            VentanaVehiculosRegistrados ventana = new VentanaVehiculosRegistrados(modeloPlacas, parqueadero);
+            ventana.setLocationRelativeTo(null);
+            ventana.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_listarVehiculosActionPerformed
 
     private void eliminarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVehiculoActionPerformed
         // TODO add your handling code here:
-        
+
         ArrayList<Vehiculo> lista = parqueadero.getVehiculosDentro();
         int plazasDisponibles = parqueadero.getCapacidad() - lista.size();
-        if(lista.isEmpty()){
-            javax.swing.JOptionPane.showMessageDialog(this, "No hay vehiculos registrados. Plazas disponibles: "+ plazasDisponibles ,
-                        "Alerta", javax.swing.JOptionPane.WARNING_MESSAGE);
-    
-    }else{
-        VentanaEliminarVehiculo ventana = new VentanaEliminarVehiculo(parqueadero);
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
-        this.dispose();
+        if (lista.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay vehiculos registrados. Plazas disponibles: " + plazasDisponibles,
+                    "Alerta", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            VentanaEliminarVehiculo ventana = new VentanaEliminarVehiculo(parqueadero);
+            ventana.setLocationRelativeTo(null);
+            ventana.setVisible(true);
+            this.dispose();
         }
-        
+
     }//GEN-LAST:event_eliminarVehiculoActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
@@ -269,15 +281,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         ArrayList<Vehiculo> lista = parqueadero.getVehiculosDentro();
         int plazasDisponibles = parqueadero.getCapacidad() - lista.size();
-        if(lista.isEmpty()){
-            javax.swing.JOptionPane.showMessageDialog(this, "No hay vehiculos registrados. Plazas disponibles: "+ plazasDisponibles ,
-                        "Alerta", javax.swing.JOptionPane.WARNING_MESSAGE);
-    
-    }else{
-        VentanaRetirarVehiculo ventana = new VentanaRetirarVehiculo(parqueadero);
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
-        this.dispose();
+        if (lista.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay vehiculos registrados. Plazas disponibles: " + plazasDisponibles,
+                    "Alerta", javax.swing.JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            VentanaRetirarVehiculo ventana = new VentanaRetirarVehiculo(parqueadero);
+            ventana.setLocationRelativeTo(null);
+            ventana.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnRetirarVehiculoActionPerformed
 

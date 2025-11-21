@@ -52,6 +52,15 @@ public class Parqueadero {
         return false;
     }
 
+    public Vehiculo buscarPorPlaca(String placa) {
+        for (Vehiculo v : vehiculosDentro) {
+            if (v.getPlaca().equalsIgnoreCase(placa)) {
+                return v;
+            }
+        }
+        return null;
+    }
+
     public boolean ingresarVehiculo(Vehiculo v) {
         if (v == null) {
             return false;

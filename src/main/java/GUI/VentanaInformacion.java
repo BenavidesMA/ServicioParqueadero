@@ -3,32 +3,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-
 import Modelo.*;
-import javax.swing.DefaultComboBoxModel;
-
 /**
  *
  * @author Usuario
  */
-public class VentanaAgregarVehiculo extends javax.swing.JFrame {
+public class VentanaInformacion extends javax.swing.JFrame {
     
-    private DefaultComboBoxModel<String> modeloPlacas = VentanaPrincipal.modeloPlacas;
-    private Parqueadero parqueadero = VentanaPrincipal.parqueadero;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaAgregarVehiculo.class.getName());
+    private Vehiculo original;   
+    private Parqueadero parqueadero;
+    private GestorArchivos gestor; 
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaInformacion.class.getName());
 
     /**
-     * Creates new form VentanaAgregarVehiculo
+     * Creates new form VentanaInformacion
      */
-    public VentanaAgregarVehiculo(DefaultComboBoxModel<String> modeloPlacas, Parqueadero parqueadero) {
+    public VentanaInformacion(Vehiculo vehiculo, Parqueadero parqueadero, GestorArchivos gestor) {
         initComponents();
+        
+        this.original = vehiculo;
         this.parqueadero = parqueadero;
-        this.modeloPlacas = modeloPlacas;
+        this.gestor = gestor;
+
+        cargarDatosEnCampos();
     }
 
-    private VentanaAgregarVehiculo() {
+    private VentanaInformacion() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    private void cargarDatosEnCampos() {
+
+    txtNombre.setText(original.getPropietario().getNombre());
+    txtCedula.setText(String.valueOf(original.getPropietario().getCedula()));
+    txtTelefono.setText(String.valueOf(original.getPropietario().getTelefono()));
+
+    txtPlaca.setText(original.getPlaca());
+    txtModelo.setText(original.getModelo());
+
+    
+    switch (original.tipoVehiculo()) {
+        case "Moto" -> cmbVehiculo.setSelectedItem("Moto");
+        case "Carro" -> cmbVehiculo.setSelectedItem("Carro");
+        case "Camion" -> cmbVehiculo.setSelectedItem("Camión");
+    }
+    
+    cmbVehiculo.setEnabled(false);
+    txtPlaca.setEnabled(false);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,10 +80,10 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Agregar Vehiculo");
+        setTitle("Actualizar datos");
 
         jLabel2.setFont(new java.awt.Font("Bauhaus 93", 0, 18)); // NOI18N
-        jLabel2.setText("DATOS");
+        jLabel2.setText("ACTUALIZAR DATOS");
 
         jLabel3.setFont(new java.awt.Font("Bauhaus 93", 0, 18)); // NOI18N
         jLabel3.setText("PROPIETARIO");
@@ -87,7 +109,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
             }
         });
 
-        btnGuardarVehiculo.setText("Guardar");
+        btnGuardarVehiculo.setText("Guardar cambios");
         btnGuardarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarVehiculoActionPerformed(evt);
@@ -111,8 +133,13 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
         });
 
         cmbVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carro", "Moto", "Camión" }));
+        cmbVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVehiculoActionPerformed(evt);
+            }
+        });
 
-        btnVolver.setText("Volver al menú");
+        btnVolver.setText("Cancelar");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
@@ -124,43 +151,43 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNombre)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCedula)
-                    .addComponent(txtTelefono))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtPlaca)
-                        .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cmbVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombre)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCedula)
+                            .addComponent(txtTelefono))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtPlaca)
+                                .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(49, Short.MAX_VALUE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnGuardarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(196, 196, 196))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuardarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(137, 137, 137))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -194,7 +221,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,103 +232,83 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVehiculoActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-        try {
-            String nombre = txtNombre.getText().trim();
-            String placa = txtPlaca.getText().trim().toUpperCase();;
-            String modelo = txtModelo.getText().trim();
-
-            if (nombre.isEmpty() || txtCedula.getText().isEmpty()
-                    || txtTelefono.getText().isEmpty() || placa.isEmpty() || modelo.isEmpty()) {
-
-                javax.swing.JOptionPane.showMessageDialog(this, "Debe llenar todos los campos",
-                        "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            if (nombre.matches("^[A-Za-z ]+$")) {
-
-                int cedula = Integer.parseInt(txtCedula.getText().trim());
-                int telefono = Integer.parseInt(txtTelefono.getText().trim());
-
-                if (parqueadero.placaExiste(placa)) {
-                     javax.swing.JOptionPane.showMessageDialog(this,
-                            "Este vehiculo ya se encuentra registrado",
-                            "Placa Duplicada",
-                             javax.swing.JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-                Propietario propietario = new Propietario(nombre, cedula, telefono);
-
-                String tipo = cmbVehiculo.getSelectedItem().toString().toLowerCase();
-
-                Vehiculo v = null;
-
-                if (tipo.equals("moto")) {
-                    if (placa.matches("^[A-Za-z]{3}\\d{2}[A-Za-z]$")) {
-                        v = new Moto(placa, modelo, propietario);
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "Ingrese una placa válida (Ej: ABC12D)",
-                                "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
-                        return;
-                    }
-                } else if (tipo.equals("carro")) {
-                    if (placa.matches("^[a-zA-Z]{3}\\d{3}$")) {
-                        v = new Carro(placa, modelo, propietario);
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "Ingrese una placa válida (Ej: ABC123)",
-                                "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
-                        return;
-                    }
-                } else if (tipo.equals("camión")) {
-                    if (placa.matches("^[a-zA-Z]{3}\\d{3}$")) {
-                        v = new Camion(placa, modelo, propietario);
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, "Ingrese una placa válida (Ej: ABC123)",
-                                "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
-                        return;
-                    }
-                }
-
-                boolean ok = parqueadero.ingresarVehiculo(v);
-                modeloPlacas.addElement(v.getPlaca());
-
-                if (ok) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Vehículo agregado correctamente");
-                    txtNombre.setText("");
-                    txtCedula.setText("");
-                    txtTelefono.setText("");
-                    txtPlaca.setText("");
-                    txtModelo.setText("");
-
-                } else {
-                    javax.swing.JOptionPane.showMessageDialog(this, "El parqueadero está lleno");
-                }
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un nombre válido, el nombre no puede contener números (Ej: Edwin)",
-                        "Error de Validación", javax.swing.JOptionPane.WARNING_MESSAGE);
-
-            }
-        } catch (NumberFormatException e) {
-
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Error: Cédula y Telefono deben ser números enteros válidos y no pueden estar vacíos.",
-                    "Error de Datos Numéricos",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnGuardarVehiculoActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModeloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtModeloActionPerformed
+
+    private void btnGuardarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVehiculoActionPerformed
+        // TODO add your handling code here:
+       try {
+        String nombre = txtNombre.getText().trim();
+        String placa = txtPlaca.getText().trim().toUpperCase(); 
+        String modelo = txtModelo.getText().trim();
+
+        if (nombre.isEmpty() || txtCedula.getText().isEmpty()
+            || txtTelefono.getText().isEmpty() || modelo.isEmpty()) {
+
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Debe llenar todos los campos",
+                    "Error de Validación",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!nombre.matches("^[A-Za-z ]+$")) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "Ingrese un nombre válido",
+                "Error de Validación",
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        
+        int cedula = Integer.parseInt(txtCedula.getText().trim());
+        int telefono = Integer.parseInt(txtTelefono.getText().trim());
+
+       
+        Propietario p = new Propietario(nombre, cedula, telefono);
+
+        String tipo = cmbVehiculo.getSelectedItem().toString().toLowerCase();
+        Vehiculo nuevoVehiculo = null;
+
+        if (tipo.equals("moto")) {
+            nuevoVehiculo = new Moto(placa, modelo, p);
+        } else if (tipo.equals("carro")) {
+            nuevoVehiculo = new Carro(placa, modelo, p);
+        } else if (tipo.equals("camión")) {
+            nuevoVehiculo = new Camion(placa, modelo, p);
+        }
+
+       
+        nuevoVehiculo.setHoraEntrada(original.getHoraEntrada());
+
+       
+        parqueadero.getVehiculosDentro().remove(original);
+        parqueadero.getVehiculosDentro().add(nuevoVehiculo);
+
+        
+        gestor.guardarVehiculos(parqueadero.getVehiculosDentro());
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Vehículo actualizado correctamente");
+        this.dispose();
+
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+            "Cédula y Teléfono deben ser números enteros",
+            "Error de Datos",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_btnGuardarVehiculoActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
@@ -311,17 +318,14 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPlacaActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        VentanaPrincipal ventana = new VentanaPrincipal();
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void cmbVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVehiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbVehiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,7 +349,7 @@ public class VentanaAgregarVehiculo extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VentanaAgregarVehiculo().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new VentanaInformacion().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
