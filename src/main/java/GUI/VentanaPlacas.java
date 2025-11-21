@@ -123,6 +123,7 @@ public class VentanaPlacas extends javax.swing.JFrame {
         Vehiculo vehiculo = parqueadero.buscarPorPlaca(placaSeleccionada);
 
         VentanaInformacion ventana = new VentanaInformacion(vehiculo, parqueadero, gestor);
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
