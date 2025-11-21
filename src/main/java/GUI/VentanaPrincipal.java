@@ -30,7 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ArrayList<Vehiculo> lista = gestor.cargarVehiculos();
         parqueadero.setVehiculosDentro(lista);
 
-        modeloPlacas.removeAllElements(); // <-- Limpia antes de llenar
+        modeloPlacas.removeAllElements();
 
         for (Vehiculo v : lista) {
             modeloPlacas.addElement(v.getPlaca());
